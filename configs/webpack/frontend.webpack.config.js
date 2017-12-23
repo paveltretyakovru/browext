@@ -2,12 +2,15 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
+const WATCH_ENV = process.env.WATCH_ENV === 'front'
+
 // Configs
 const config = {}
 config.paths = require('./paths').frontend
 config.rules = require('./rules').ts
 
 module.exports = {
+  watch: WATCH_ENV,
   devtool: 'inline-source-map',
   context: path.resolve(__dirname, '..', '..'),
 

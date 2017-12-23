@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --display-error-details",
-    "watch": "nodemon --exec ./node_modules/.bin/webpack  --display-error-details"
+    "build": "webpack",
+    "watch": "nodemon --exec webpack",
+    "watch-front": "WATCH_ENV=front nodemon -w ./webpack.config.js -w ./configs -x webpack",
+    "watch-chrome": "WATCH_ENV=chrome nodemon  -w ./webpack.config.js -w ./configs -x webpack",
+    "build-front": "BUILD_ENV=front webpack",
+    "build-chrome": "BUILD_ENV=chrome webpack"
   },
   "repository": {
     "type": "git",
@@ -31,6 +35,7 @@
     "html-webpack-plugin": "^2.30.1",
     "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
+    "watch-ignore-webpack-plugin": "^1.0.0",
     "webpack": "^2.2.1"
   }
 }
