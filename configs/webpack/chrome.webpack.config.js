@@ -1,43 +1,37 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WatchIgnorePlugin = require('watch-ignore-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-const WATCH_ENV = process.env.WATCH_ENV === 'chrome'
-
-const config = {}
-config.paths = require('./paths').chrome
-config.rules = require('./rules').ts
+const paths = require('./paths').chrome
+const rules = require('./rules').ts
 
 module.exports = {
-  watch: WATCH_ENV,
-  context: path.resolve(__dirname, '..', '..'),
+  watch: process.env.WATCH_ENV === 'chrome',
+  devtool: 'inline-source-map',
+  context: paths.root,
 
   entry: {
-    chrome: config.paths.entry,
+    chrome: paths.entry,
   },
 
   output: {
-    path: path.resolve('dist', 'browser', 'chrome'),
+    path: paths.output,
     filename: 'bundle.js',
   },
 
   module: {
-    rules: [config.rules],
+    rules: [rules],
   },
 
   resolve: {
     extensions: ['.ts'],
   },
 
-  devtool: 'inline-source-map',
-
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    new WatchIgnorePlugin(config.paths.watchIgnore),
+    new WatchIgnorePlugin(paths.watchIgnore),
     new HtmlWebpackPlugin({
-      filename: config.paths.template.filename,
-      template: config.paths.template.template,
+      template: paths.templates.popup,
     }),
   ],
 }

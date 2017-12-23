@@ -1,8 +1,5 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-
-const WATCH_ENV = process.env.WATCH_ENV === 'front'
 
 // Configs
 const config = {}
@@ -10,9 +7,9 @@ config.paths = require('./paths').frontend
 config.rules = require('./rules').ts
 
 module.exports = {
-  watch: WATCH_ENV,
+  watch: process.env.WATCH_ENV === 'front',
   devtool: 'inline-source-map',
-  context: path.resolve(__dirname, '..', '..'),
+  context: config.paths.root,
 
   entry: {
     frontend: config.paths.entry,
@@ -34,8 +31,7 @@ module.exports = {
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: config.paths.template.filename,
-      template: config.paths.template.template,
+      template: config.paths.templates.index,
     }),
   ],
 }
