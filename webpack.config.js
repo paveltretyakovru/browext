@@ -1,15 +1,13 @@
-var chromeWebpackConfig = require('./configs/webpack/chrome.webpack.config')
-var frontendWebpackConfig = require('./configs/webpack/frontend.webpack.config')
+var webpackChrome = require('./configs/webpack/webpack.chrome')
+var webpackFrontend = require('./configs/webpack/webpack.frontend')
 
-const spotBuilds = () => {
+module.exports = (() => {
   const { BUILD_ENV, WATCH_ENV } = process.env
 
   switch (BUILD_ENV || WATCH_ENV) {
-    case 'chrome': return [chromeWebpackConfig]
-    case 'front': return [frontendWebpackConfig]
+    case 'chrome': return [webpackChrome]
+    case 'front': return [webpackFrontend]
 
-    default: return [chromeWebpackConfig, frontendWebpackConfig]
+    default: return [webpackChrome, webpackFrontend]
   }
-}
-
-module.exports = spotBuilds()
+})()

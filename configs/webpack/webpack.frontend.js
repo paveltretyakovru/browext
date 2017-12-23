@@ -3,16 +3,18 @@ const WatchIgnorePlugin = require('webpack').WatchIgnorePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const root = require('./helpers').root
-const baseConfig = require('./base.webpack.config')
+const webpackCommon = require('./webpack.common')
 
-module.exports = merge(baseConfig, {
+module.exports = merge(webpackCommon, {
   watch: process.env.WATCH_ENV === 'front',
 
-  entry: root('src/frontend/app/index'),
+  entry: {
+    frontend: root('src/frontend/app/index')
+  },
 
   output: {
     path: root('dist/frontend/app'),
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
 
   plugins: [
