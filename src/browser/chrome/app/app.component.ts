@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
 
 // Import to make styles in all document, not only for component
-import './shared/scss/app.styles.scss'
+import './app.styles.scss'
 
 @Component({
-  selector: "app",
+  selector: 'app',
 
   // Requre to make style in the component only
   styles: [require('./app.component.scss')],
