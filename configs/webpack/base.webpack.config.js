@@ -6,6 +6,7 @@ const root = helpers.root
 const baseWebpackConfig = {
   devtool: 'source-map',
   context: helpers.root(),
+  resolve: { extensions: ['.js', '.ts', '.css', '.scss', '.sass'] },
 
   module: {
     rules: [
@@ -37,10 +38,6 @@ const baseWebpackConfig = {
         options: { transpileOnly: true },
       }
     ],
-  },
-
-  resolve: {
-    extensions: ['.js', '.ts', '.css', '.scss', '.sass'],
   },
 
   plugins: [
