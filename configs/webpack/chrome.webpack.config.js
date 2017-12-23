@@ -1,40 +1,35 @@
+const merge = require('webpack-merge')
 const WatchIgnorePlugin = require('webpack').WatchIgnorePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-const paths = require('./paths').chrome
-const rules = require('./rules')
+const root = require('./helpers').root
+const baseConfig = require('./base.webpack.config')
 
-module.exports = {
+const src = 'src/browser/chrome'
+const dist = 'dist/browser/chrome'
+
+module.exports = merge(baseConfig, {
   watch: process.env.WATCH_ENV === 'chrome',
-  devtool: 'source-map',
-  context: paths.root,
 
-  entry: {
-    chrome: paths.entry,
-  },
+  entry: root(`${src}/app/index`),
 
   output: {
-    path: paths.output,
+    path: root(`${dist}/app`),
     filename: 'bundle.js',
   },
 
-  module: {
-    rules: [rules.ts, rules.css, rules.sass.dev],
-  },
-
-  resolve: {
-    extensions: ['.js', '.ts', '.css', '.scss', '.sass'],
-  },
-
   plugins: [
-    new ForkTsCheckerWebpackPlugin(),
-    new WatchIgnorePlugin(paths.watchIgnore),
-    new CopyWebpackPlugin(paths.copy),
+    new WatchIgnorePlugin([root('node_modules'), root('src/frontend')]),
+
+    new CopyWebpackPlugin([
+      { from: root(`${src}/manifest.json`), to: root(dist) },
+      { from: root(`${src}/icon.png`), to: root(dist) },
+    ]),
+
     new HtmlWebpackPlugin({
-      template: paths.templates.popup.src,
-      filename: paths.templates.popup.dist,
+      template: root(`${src}/popup.html`),
+      filename: root(`${dist}/popup.html`),
     }),
   ],
-}
+})
