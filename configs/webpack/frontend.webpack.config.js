@@ -5,7 +5,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 // Configs
 const config = {}
 config.paths = require('./paths').frontend
-config.rules = require('./rules').ts
+config.rules = require('./rules').all
 
 module.exports = {
   watch: process.env.WATCH_ENV === 'front',
@@ -26,7 +26,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.js', '.ts', '.css', '.scss', '.sass'],
   },
 
   plugins: [

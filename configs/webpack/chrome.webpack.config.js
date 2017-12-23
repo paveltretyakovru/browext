@@ -4,11 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const paths = require('./paths').chrome
-const rules = require('./rules').ts
+const rules = require('./rules')
 
 module.exports = {
   watch: process.env.WATCH_ENV === 'chrome',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   context: paths.root,
 
   entry: {
@@ -21,11 +21,11 @@ module.exports = {
   },
 
   module: {
-    rules: [rules],
+    rules: [rules.ts, rules.css, rules.sass.dev],
   },
 
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.js', '.ts', '.css', '.scss', '.sass'],
   },
 
   plugins: [
