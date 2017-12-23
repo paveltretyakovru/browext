@@ -1,3 +1,4 @@
+const WatchIgnorePlugin = require('webpack').WatchIgnorePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
@@ -29,6 +30,7 @@ module.exports = {
   },
 
   plugins: [
+    new WatchIgnorePlugin(config.paths.watchIgnore),
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: config.paths.templates.index,

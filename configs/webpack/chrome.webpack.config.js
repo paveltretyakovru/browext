@@ -1,6 +1,6 @@
+const WatchIgnorePlugin = require('webpack').WatchIgnorePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WatchIgnorePlugin = require('watch-ignore-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const paths = require('./paths').chrome

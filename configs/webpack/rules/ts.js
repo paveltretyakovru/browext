@@ -3,7 +3,7 @@ const paths = require('../paths')
 module.exports = {
   test: /\.ts?$/,
 
-  loader: 'ts-loader',
+  loader: 'awesome-typescript-loader',
 
   include: [
     paths.src
