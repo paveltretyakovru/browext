@@ -6,6 +6,19 @@ module.exports = {
 
   chrome: {
     entry: path(['src', 'browser', 'chrome', 'app']),
-    output: 'dist/browser/chrome/bundle',
+    output: path(['dist', 'browser', 'chrome', 'app']),
+    template: {
+      filename: path(['dist', 'browser', 'chrome', 'index.html']),
+      template: path(['src', 'browser', 'chrome', 'index.html']),
+    }
+  },
+
+  frontend: {
+    entry: path(['src', 'frontend', 'app']),
+    output: path(['dist', 'frontend']),
+    template: {
+      filename: path(['dist', 'frontend', 'index.html']),
+      template: path(['src', 'frontend', 'index.html']),
+    }
   }
 }

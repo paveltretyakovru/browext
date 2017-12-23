@@ -1,7 +1,9 @@
-// var jsRule = require('./js')
+var jsRule = require('./js')
 var tsRule = require('./ts')
 
-module.exports = [
-  tsRule,
-  // jsRule,
-]
+module.exports = {
+  ts: tsRule,
+  js: jsRule,
+
+  all: [tsRule, jsRule],
+}
