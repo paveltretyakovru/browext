@@ -1,0 +1,12 @@
+@import '../../shared/scss/reset.styles.scss';
+
+html{
+  color: rgba(33, 33, 33, 0.87);
+
+  body{
+    margin:0;
+    min-width: 300px;
+    min-height: 200px;
+    font-family: "Roboto", 'Helvetica Neue, Helvetica, Arial';
+  }
+}

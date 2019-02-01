@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "nodemon --exec webpack",
+    "dev:cross": "WATCH_ENV=cross webpack & node ./node_modules/.bin/webpack-dev-server --inline",
     "watch-front": "WATCH_ENV=front nodemon -w ./webpack.config.js -w ./configs -x webpack",
     "watch-chrome": "WATCH_ENV=chrome nodemon  -w ./webpack.config.js -w ./configs -x webpack",
     "build-front": "BUILD_ENV=front webpack",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/ptretyakov/browext#readme",
   "devDependencies": {
+    "webpack-dev-server": "^1.14.1",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",

@@ -13,9 +13,9 @@ const webpackCommon = {
     extensions: ['.js', '.ts', '.css', '.scss', '.sass']
   },
 
-  entry: {
-    polyfills: root('src/shared/polyfills.ts'),
-  },
+  entry: [
+    root('src/shared/polyfills.ts'),
+  ],
 
   module: {
     rules: [
@@ -67,10 +67,6 @@ const webpackCommon = {
     new webpack.ProvidePlugin({ Reflect: 'core-js/es7/reflect' }),
     new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, root('src')),
   ],
-
-  devServer: {
-    historyApiFallback: true
-  }
 }
 
 /**
